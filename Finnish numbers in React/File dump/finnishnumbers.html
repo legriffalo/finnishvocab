@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title> finnish numbers </title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+
+    
+
+    
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+    
+<body>
+    
+<p> type in a number <input id="number" type="number" onChange="numbersay(this.value);"></p>
+
+    <audio id="yksi"> <source src="numbers/yksi.mp3"> </audio>
+    <audio id="kaksi"> <source src="numbers/kaksi.mp3"> </audio>
+    <audio id="kolme"> <source src="numbers/kolme.mp3"> </audio>
+    <audio id="nelja"> <source src="numbers/nelja.mp3"> </audio>
+    <audio id="viisi"> <source src="numbers/viisi.mp3"> </audio>
+    <audio id="kuusi"> <source src="numbers/kuusi.mp3"> </audio>
+    <audio id="seitseman"> <source src="numbers/seitseman.mp3"> </audio>
+    <audio id="kahdeksan"> <source src="numbers/kahdeksan.mp3"> </audio>
+    <audio id="yhdeksan"> <source src="numbers/yhdeksan.mp3"> </audio>
+    <audio id="kymmenta"> <source src="numbers/kymmenta.mp3"> </audio>
+    <audio id="kymmenen"> <source src="numbers/kymmenen.mp3"> </audio>
+    <audio id="sata"> <source src="numbers/sata.mp3"> </audio>
+    <audio id="tuhat"> <source src="numbers/tuhat.mp3"> </audio>
+    <audio id="tuhatta"> <source src="numbers/tuhatta.mp3"> </audio>
+    <audio id="sataa"> <source src="numbers/sataa.mp3"> </audio>
+    <audio id="toista"> <source src="numbers/toista.mp3"> </audio>
+ 
+    
+    
+<script>
+
+    
+var finnishnumber= "";   
+
+    
+function readnumber(x){
+var numberstosay = x.split(' ');
+window.alert(numberstosay);
+newnumberstosay = numberstosay.filter(function () { return true });
+window.alert(newnumberstosay);
+window.alert(numberstosay[0]);
+    var i=0;
+   
+    var words = setInterval(function(){
+        if(i<numberstosay.length){
+        document.getElementById(numberstosay[i]).play();
+        i++;}},1100);
+    
+    }
+  
+   
+function numbersay(x){
+        var numero = x%10;
+        var kymmenta = Math.floor(x/10)%10;
+        var sata = Math.floor(x/100)%10;
+        var tuhat = Math.floor(x/1000)%10;
+        
+    if(x == 10)
+    {finnishnumber = "kymmenta";}
+    else if(10<x && x<20){
+        lastdigit(numero);
+        tens(kymmenta);
+    }
+    else{
+        hundreds(sata);
+        tens(kymmenta);
+        lastdigit(numero);
+    }
+    window.alert(finnishnumber);
+    readnumber(finnishnumber);
+    finnishnumber = "";
+    }
+    
+function lastdigit(x){
+    
+        switch(x){
+            case 1: //window.alert("yksi");
+                finnishnumber+="yksi";
+                break;
+            case 2: //window.alert("kaksi");
+                finnishnumber+="kaksi";
+                break;
+            case 3: //window.alert("kolme");
+                finnishnumber+="kolme";
+                break;
+            case 4: //window.alert("nelja");
+                finnishnumber+="nelja";
+                break;
+            case 5: //window.alert("viisi");
+                finnishnumber+="viisi";
+                break;
+            case 6: //window.alert("kuusi");
+                finnishnumber+="kuusi";
+                break;
+            case 7: //window.alert("seitseman");
+                finnishnumber+="seitseman";
+                break;
+            case 8: //window.alert("kahdeksan");
+                finnishnumber+="kahdeksan";
+                break;
+            case 9: //window.alert("yhdeksan");
+                finnishnumber+="yhdeksan";
+                break;
+            case 0: //window.alert("kymmenia");
+        
+                break;
+            default: window.alert("type in a number to convert to finnish");
+        }
+}
+    
+function tens(x){
+        switch(x){
+            case 1: //window.alert("add toista");
+                
+                finnishnumber+=" toista";
+                break;
+            case 2:// window.alert(" kaksi kymmenta");
+                finnishnumber += "kaksi kymmenta ";
+                break;
+            case 3: //window.alert(" kolme kymmenta");
+                finnishnumber += "kolme kymmenta ";
+                break;
+            case 4: //window.alert(" nelja kymmenta");
+                finnishnumber += "nelja kymmenta ";
+                break;
+            case 5: //window.alert(" viisi kymmenta");
+                finnishnumber += "viisi kymmenta ";
+                break;
+            case 6: //window.alert(" kuusi");
+                finnishnumber += "kuusi kymmenta ";
+                break;
+            case 7: //window.alert(" seitseman");
+                finnishnumber += "seitseman kymmenta ";
+                break;
+            case 8: //window.alert("kahdeksan kymmenta");
+                finnishnumber += "kahdeksan kymmenta ";
+                break;
+            case 9: //window.alert(" yhdeksan kymmenta");
+                finnishnumber+=  "yhdeksan kymmenta ";
+                break;
+            case 0: window.alert(" sata");
+                
+                break;
+            default: window.alert("type in a number to convert to finnish");
+        }
+        }
+
+function hundreds(x){
+        switch(x){
+            case 1: //window.alert("add sata");
+                
+                finnishnumber += "sata " ;
+                break;
+            case 2: //window.alert("kaksi kymmenta");
+                finnishnumber += "kaksi sataa " ;
+                break;
+            case 3: //window.alert("kolme kymmenta");
+                finnishnumber += "kolme sataa ";
+                break;
+            case 4: //window.alert("nelja kymmenta");
+                finnishnumber+= "nelja sataa ";
+                break;
+            case 5: //window.alert("viisi kymmenta");
+                finnishnumber+= "viisi sataa ";
+                break;
+            case 6: //window.alert("kuusi");
+                finnishnumber += "kuusi sataa ";
+                break;
+            case 7: //window.alert("seitseman");
+                finnishnumber += "seitseman sataa ";
+                break;
+            case 8: //window.alert("kahdeksan kymmenta");
+                finnishnumber += "kahdeksan sataa ";
+                break;
+            case 9: //window.alert("yhdeksan kymmenta");
+                finnishnumber+=  "yhdeksan sataa ";
+                break;
+            case 0://window.alert(" ei sataa");
+             
+                break;
+            
+            default: window.alert("type in a number to convert to finnish");
+        }
+        }
+   
+    
+   
+    
+    
+    </script>
+    
+    
+</body>
+</html>
