@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Drawing digits</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--styles-->
+    <link rel = "stylesheet" href = "drawing.css">
+    
+</head>
+    
+<body>
+<!-- header for app-->
+<div id = 'wrapper'>
+  <div id="header"> <h1>Building the digit data source</h1> 
+  
+  <p>This small web app is developed to feed your lovely 
+    handwritten data in to a database for later use by me 
+    to develop machine learning models and fun applications.
+  <br/>
+  <br/>
+  Just write the characters using a stylus, mouse or your fingers.
+  <br/>
+  <br/>
+  Your help is massively appreciated.</p></div>
+  
+  <div id = 'ask'><p>Draw this character: <Span id = 'task'></Span></p></div>
+  
+  <div id = 'container'>
+    <!-- paint area -->
+    <canvas id="paint"></canvas>
+</div> 
+
+<!-- buttons here-->
+<div id = 'buttons'>
+  <button id= 'erase'>Clear</button>
+  <button id= 'draw'>Draw</button>
+  <button id = 'save'>Send it to the servers =) </button>
+  <div id = 'saving' ><span>   </span></div>
+  
+</div>
+
+<!-- show testing info -->
+<div id = 'testZone'>
+  <p id = 'outputs'></p>
+</div>
+
+</div>
+
+
+<script src = './draw.js'></script> 
+
+</body>
+</html>
