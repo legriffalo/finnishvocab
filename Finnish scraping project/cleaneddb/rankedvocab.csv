@@ -1,4 +1,4 @@
-,Summary,word,POS,freq,forms,important,ranking
+index,Summary,word,POS,freq,forms,important,ranking
 1,be|v,be,v,318018,"be, am, are, been, being, is, was, were",vital,1
 2,I|fw,I,fw,267578,I,vital,2
 3,you|fw,you,fw,248266,you,vital,3
@@ -352,7 +352,7 @@
 351,hit|v,hit,v,1668,"hit, hits, hitting",critical,351
 352,yet|fw,yet,fw,1658,yet,critical,352
 353,save|v,save,v,1656,"save, saved, saves, saving",critical,353
-354,true|j,true,j,1653,"true, truer, truest",critical,354
+354,true|j,TRUE,j,1653,"true, truer, truest",critical,354
 355,sweet|j,sweet,j,1649,"sweet, sweeter, sweetest",critical,355
 356,until|fw,until,fw,1642,until,critical,356
 357,food|n,food,n,1628,"food, foods",critical,357
@@ -2483,7 +2483,7 @@
 2485,production|n,production,n,107,"production, productions",useful,2485
 2477,classy|j,classy,j,107,"classy, classier, classiest",useful,2477
 2483,highly|r,highly,r,107,highly,useful,2483
-2482,false|j,false,j,107,"false, falser, falsest",useful,2482
+2482,false|j,FALSE,j,107,"false, falser, falsest",useful,2482
 2481,environment|n,environment,n,107,"environment, environments",useful,2481
 2480,duh|u,duh,u,107,duh,useful,2480
 2479,drown|v,drown,v,107,"drown, drowned, drowning, drowns",useful,2479
@@ -3532,7 +3532,7 @@
 3529,minor|j,minor,j,61,minor,common speech,3529
 3520,courtesy|n,courtesy,n,61,"courtesy, courtesies",common speech,3520
 3528,mentally|r,mentally,r,61,mentally,common speech,3528
-3513,9-1-1|m,9-1-1,m,61,"9-1-1, 911",common speech,3513
+3513,9-1-1|m,09/01/2001,m,61,"9-1-1, 911",common speech,3513
 3514,adjustment|n,adjustment,n,61,"adjustment, adjustments",common speech,3514
 3515,adoption|n,adoption,n,61,"adoption, adoptions",common speech,3515
 3516,anyhow|r,anyhow,r,61,anyhow,common speech,3516

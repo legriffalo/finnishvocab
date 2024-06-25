@@ -1,0 +1,8 @@
+test at 1718831851.610579 
+db connection established 
+Query assembled: 
+ 
+    SELECT * 
+    FROM "top 5000"
+    query attempted 
+query status is: completed sent to db

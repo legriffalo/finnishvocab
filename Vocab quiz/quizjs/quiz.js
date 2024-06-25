@@ -1,219 +1,101 @@
+//global variable to store currently select mixnd match element
+selected = {"eword":"",
+            "fword":""};
 
-/// next steps//
-// get question to rotate/randomly generate
-// get format nicely
-// get it to deal with varying question lengths 
-//https://stackoverflow.com/questions/5613834/convert-string-to-variable-name-in-javascript
-///
-
-  //
-  //  Use a closure to hide the local variables from the
-  //  global namespace
-  //
- // (function () {
-  //  var QUEUE = MathJax.Hub.queue;  // shorthand for the queue
-  //  var math = null;                // the element jax for the math output.
-
-    //
-    //  Get the element jax when MathJax has produced it.
-    //
-
-//window.UpdateMath = function () {
-
-
-//mat = document.getElementsByClassName('input')
-
-
-//for(let i = 0;i<mat.length;i++){
-
-
-    //QUEUE.Push(function () {
-     //   TeX = mat[i].value
-    //  math = MathJax.Hub.getAllJax("MathOutput")[0];
-   //   QUEUE.Push(["Text",math,"\\displaystyle{"+TeX+"}"]);
- //   });
-
-
-//}};
-   
-
-  //})();
-
-
-//function include(file) {
-  
-   // var script  = document.createElement('script');
-    //script.src  = file;
-    //script.type = 'text/javascript';
-    //script.defer = true;
-    
-   // document.getElementsByTagName('head').item(0).appendChild(script);
-    
-  //}
-    
-  /* Include Many js files */
- // include('./quiz_dependencies/MathJax-2.7.3/MathJax.js')
-
-//var document = "quiz.html"
-
-//questions = questions.replaceAll("*",'&#215');
-//questions = questions.replaceAll("*",'&#92;times')
-//questions = questions.replaceAll("*",'&#92;times')
-const qs = JSON.parse(questions);
-////
-
-const opt = JSON.parse(options);
-console.log(opt);
-//var check = JSON.parse(questions).Q1.Question;
-//window.alert(check);
-var quizstate = 0;
-var answer = 0 ;
-var i = 0;
-//var question_list = object.keys(qs);
-var score = 0;
-var keys = [];
-for(var k in qs) keys.push(k);
-
-if(parseInt(opt.options.Randomised) == 1){
-   // window.alert('triggered randomised qs')
-    keys = keys.sort((a, b) => 0.5 - Math.random())
-    //window.alert(keys);
-};
-if(parseInt(opt.options.loopincorrect) == 1){
-    loop = true
+// function to jumble lists for matching activities
+const randomise = (x)=>{
+    let y = []
+    while(x.length>0){
+        y.push(String(x.splice(Math.floor(Math.random()*x.length-1),1)));
+    }
+    return y
 };
 
-var question = keys[i]
+const buildMatchem= (x,target)=>{
+    let category = x;
+    let words = vocab[category];
+    let eWords = Object.keys(words);
+    let fWords = Object.values(words);
 
+    let randFin = randomise(fWords);
 
-
-function startQuiz(){
+    for(let i = 0; i<eWords.length;i++){
+        let englishWord = eWords[i];
+        let finnishWord = randFin[i];
     
-    if(quizstate != 1){
-        document.getElementById("choices").innerHTML = '';
-        //window.alert(quizstate);
-        document.getElementById("quizover").style.display = "none";
-         quizstate = 1;
-        //window.alert(gamestate);
-        generatequestion(question);    
-    }
-    else{
-        quizover();
-        quizstate = 0;
-    }
-}
-
-function quizover(){
-    document.getElementById("quizover").style.display = "block";
-    
-    document.getElementById('outof').innerHTML = i;
-}
-
-function generatequestion(question){
-    //window.alert('question being generated')
-    //var incorrect = 0;
-    var question1 = eval("qs."+ question);
-    document.getElementById('instruction').innerHTML = question1.mode;
-    var question2 = question1.Question; 
-    document.getElementById('question').innerHTML = question2;
-    //console.log(question)
-    answer = question1.Correctanswer;
-    //console.log(answer)
-    var incorrect = question1.incorrect.map((x)=>x);
-    console.log(incorrect);
-    incorrect.push(answer);
-    var answers = incorrect;
-    var answers2 = answers.sort((a, b) => 0.5 - Math.random());
-    console.log(answers2);
-
-    for(var i = 0; i < answers.length; i++) {
-        //window.alert(answers[i]);
-        gen_box(answers[i],i,'choices');}
+        console.log(englishWord,finnishWord)
         
-    //answers.forEach((x, i) => gen_box(x,i,'choices'));
-    MathJax.Hub.Typeset("[#container]")
-}
-
-function gen_box(x,i,y){
-    //window.alert('box being generated')
-    document.getElementById(y).innerHTML+='<div class="box" id="box'+ i + '"onclick="checkAnswer(' + i + ')">'+ x +'</div>'
-
-    if(x == answer){
-        document.getElementById('box'+i).classList.add('correct');
-    }
-}
-
-
-function checkAnswer(b){
-    //window.alert(answer)
-    //var b = document.getElementById("box"+b).textContent;
-    //window.alert(b);
-   //check answer from box
-    if(document.getElementById("box"+b).innerHTML === answer || document.getElementById("box"+b).classList.contains('correct'))
-    //if answer is correct
-    {document.getElementById("correct").style.display = "block";
-    setTimeout(function(){document.getElementById("correct").style.display = "none"},1000)
-    //update score
-     updateScore();
-     document.getElementById("choices").innerHTML = '';
-     //new question
-    generatequestion(question);
-    
-    }
-    else{//if answer is incorrect
-        document.getElementById("wrong").style.display = "block";
-        setTimeout(function(){document.getElementById("wrong").style.display = "none"},1000)
-
-
-    if(loop){
-        document.getElementById("choices").innerHTML = '';
-        var question_to_repeat = keys[i]
-        //window.alert(question_to_repeat)
-        keys.push(question_to_repeat);
-        //window.alert(keys)
-        i+=1;
-        question = keys[i];
-        generatequestion(question)
-    }
-    }
-}
-
-function updateScore() {
-    score += 1;
-    document.getElementById("scorevalue").innerHTML = score;
-    document.getElementById("quizscore").innerHTML = score;
-
-    i+=1;
-    if(i<keys.length){
-        question = keys[i];  
-    }
-    else{
-        quizover()
-        i = 0;
+        document.getElementById(target).innerHTML+=`<div class = "matchem_row">
+        <div class = "selectable english_word ${x}" data-type="${x}">${englishWord}</div>
+        <div class = "selectable finnish_word ${x}" data-type="${x}">${finnishWord}</div>
+        </div>`;
     }
     
-    //window.alert(question);
-    //window.alert(score);
+    return 1
 }
-     
-function setTimer(){
-   timer = window.setInterval(function(){myTimer()}, 1000); 
-   document.getElementById("timeremaining").style.display = "block";
-}       
 
-        
-function myTimer(){
-    if(time>0){
-    time--;
-    document.getElementById("timeRemaining").innerHTML = time;
+
+
+
+
+// use two elements to check if they match
+const checkMatch = (newSelection,selected)=>{
+    // console.log(newSelection.innerHTML)
+    newSelection.classList.contains("english_word")? selected["eword"]=newSelection:0;
+    newSelection.classList.contains("finnish_word")? selected["fword"]=newSelection:0;
+
+    // now check if the match is in the data provided
+    // console.log(selected["eword"].dataset.type); 
+    // console.log(selected["fword"].dataset.type);
+    // console.log(selected);
+
+    let english = selected["eword"].innerHTML;
+    let finnish = selected["fword"].innerHTML;
+    let type = selected["eword"].dataset.type;
+
+    //if types match check correctness
+    if(selected["eword"].dataset.type == selected["fword"].dataset.type){
+
+        if(vocab[type][english]==finnish){
+            console.log("MATCH MATCH MATCH");
+            // need to add code to show correct
+            selected["eword"].classList.add("correct");
+            selected["fword"].classList.add("correct");
+
+
+        }
+        //if incorrect add to mistakes log
+        else{
+          console.log(learninglog) ;
+          console.log("MATCHED type but not correct values");
+
+          learninglog.errors.includes(english)? null :learninglog.errors.push(english);
+          console.log(learninglog)  
+        }
+        // console.log("MATCHED type but not correct values");
     }
-    else {gameOver();}
+    console.log(selected)
+    // console.log(newSelection,previousSelection);
+
 }
- 
-function stopTimer(){
-   // window.alert("timer stopped")
-    clearInterval(timer);
-    time = timesetting;
-    document.getElementById("timeRemaining").innerHTML = time;
+
+
+buildMatchem("recall","recall_q")
+buildMatchem("nouns","nouns_q")
+buildMatchem("adjectives","adjectives_q")
+buildMatchem("verbs","verbs_q")
+
+
+//activate eventListeners
+let selectables = document.getElementsByClassName("selectable");
+for(let i = 0;i<selectables.length;i++){
+    selectables[i].addEventListener("pointerdown",(e)=>{
+        checkMatch(e.target,selected)
+    })
 }
+
+
+
+
+
 
