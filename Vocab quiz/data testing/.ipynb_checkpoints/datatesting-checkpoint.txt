@@ -1,0 +1,25 @@
+
+
+ test at 2024-06-26 18:36:26 
+db connection established 
+Query assembled: 
+ 
+    SELECT * 
+    FROM "infin" a
+    RIGHT JOIN "top 5000" b
+    ON a."English inifinitive" = b.word
+    WHERE (b."POS" = 'v') AND (b.important = 'vital') 
+    query attempted 
+query status is: completed sent to db
+
+ test at 2024-06-26 18:37:16 
+db connection established 
+Query assembled: 
+ 
+    SELECT * 
+    FROM "infin" a
+    RIGHT JOIN "top 5000" b
+    ON a."English inifinitive" = b.word
+    WHERE (b."POS" = 'v') AND (b.important = 'vital') 
+    query attempted 
+query status is: completed sent to db
