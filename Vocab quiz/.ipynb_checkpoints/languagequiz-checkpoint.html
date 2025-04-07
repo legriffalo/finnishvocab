@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title> liisa Sanot </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+    <link rel="stylesheet" href="./quizcss/styling.css">
+
+</head>
+
+<body>
+    <div class = "container">
+        <!--header for the page-->
+        <div class = "header">
+            <h2>Today's vocab</h2>
+            <p>Quiz yourself on the most important 5000 words in finnish.</p>
+        </div>
+
+        <!--mix and match using past errors -->
+        <div id = "recall" class = "match">
+            <h3>Recall</h3>
+
+            <div id = "recall_q" class = "tiled">
+    
+            </div>
+        </div>
+        <!-- noun matching x 5,8 or 10-->
+        <div id = "nouns" class = "match">
+            <h3>Nouns</h3>
+            <div id = "nouns_q" class = "tiled">
+
+            </div>
+
+        </div>
+
+        <div id = "adjectives" class = "match">
+            <h3>Adjectives</h3>
+            <div id = "adjectives_q" class = "tiled">
+
+            </div>
+        </div>
+        
+        <div id = "verbs" class = "match">
+            <h3>Verbs</h3>
+            <div id = "verbs_q" class = "tiled">
+
+            </div>
+        </div>
+
+        <div id = "conjugate" class = "conjugate">
+            <div class = "vocab table">
+
+            </div>
+        </div>
+
+        <div class = "summary">
+            <h3>Summary</h3>
+            <p>Words learnt:<span id = "words_learnt">x</span></p>
+            <p>sessions completed:<span id = "sessions_completed">x</span> </p>
+        </div>
+
+    <div>
+        <button>explore</button>
+    </div>
+    </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+<!-- <script src="https://unpkg.com/@supabase/supabase-js@2"></script> -->
+<script src = "./quizjs/data.js"></script>
+<script src = "./quizjs/quiz.js"></script>
+<script src = "./quizjs/api.js"></script>
+<script src = "./quizjs/api2.js"></script>
+
+</body>
